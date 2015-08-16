@@ -4,20 +4,20 @@ A tiny Bash DSL for HTTP testing.
 
 Make HTTP requests and assert on the response body and headers.
 
-## Example
 
+## Example
 Create `test.sh`:
 ```bash
 #!/bin/bash
-source shakedown.sh                              # load the framework
+source shakedown.sh                             # load the framework
 
-shakedown GET /about                             # make a GET request
-  status 200                                     # assert response status is 200
-  header 'Content-Type: text/html'               # assert response header exists
-  contains 'Take back your privacy!'             # assert resposne body contains string
+shakedown GET /about                            # make a GET request
+  status 200                                    # assert response status is 200
+  header 'Content-Type: text/html'              # assert response header exists
+  contains 'Take back your privacy!'            # assert resposne body contains string
 
-shakedown POST / -d 'q=Shakedown'                # make a POST request with form data
-  status 200                                
+shakedown POST / -d 'q=Shakedown'               # make a POST request with form data
+  status 200
   contains 'Bob Seger'
 ```
 
@@ -38,14 +38,6 @@ POST /
 Shakedown complete. 2 passed, 0 failed.
 ```
 
-## Assertions
-
-```
-status   'response status code'
-contains 'string in response body'
-matches  'regex in response body'
-header   'string in response headers'
-```
 
 ## DSL
 ```
@@ -55,15 +47,23 @@ shakedown <VERB> <PATH> <CURL OPTIONS>
   ...
 ```
 
-## HTTP Authentication
 
+## Assertions
+```
+status   'response status code'
+contains 'string in response body'
+matches  'regex in response body'
+header   'string in response headers'
+```
+
+
+## HTTP Authentication
 Use the -c option to provide credentials.
 
 ```bash test.sh -u my.domain.com -c user:pass```
 
 
 ## Setting cURL options
-
 Any parameters after the path are passed straight on to cURL.
 
 e.g. To send form data, follow redirects and set verbose output.
@@ -72,16 +72,14 @@ e.g. To send form data, follow redirects and set verbose output.
 
 
 ## Exit code
-
 The exit code is set to the number of failed tests.
 
 
 ## Debugging
-
 To help diagnose failing tests use ```print_headers```, ```print_body```, or make cURL verbose with '-v'.
 
-## More Examples
 
+## More Examples
 ```bash
 #!/bin/bash
 source shakedown.sh                             # load the framework
@@ -103,4 +101,19 @@ shakedown GET / -H 'Accept: application/json'   # add curl options
 
 shakedown PUT /user/1 -d name=Rob               # make a PUT request
   status 201
+```
+
+
+## Environment variables
+The environment variables `SHAKEDOWN_URL` and `SHAKEDOWN_CREDENTIALS` can be used instead of passing -u and -c options.
+
+```SHAKEDOWN_URL=https://duckduckgo.com bash test.sh```
+
+
+## Running tests in parallel
+Todo, but something like this:
+
+```bash
+export SHAKEDOWN_URL=https://duckduckgo.com
+ls test*.sh | xargs -n1 -P4 bash
 ```

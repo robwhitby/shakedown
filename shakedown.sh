@@ -1,8 +1,8 @@
 #!/bin/bash
 set -u
 
-BASE_URL=""
-CREDENTIALS=""
+BASE_URL=${SHAKEDOWN_URL:-""}
+CREDENTIALS=${SHAKEDOWN_CREDENTIALS:-""}
 
 _usage() {
   printf '
