@@ -4,29 +4,20 @@ A tiny Bash DSL for HTTP testing.
 
 Make HTTP requests and assert on the response body and headers.
 
-
-## DSL
-```
-shakedown <VERB> <PATH> <CURL OPTIONS>
-  <assertion>
-  <assertion>
-  ...
-```
-
 ## Example
 
 Create `test.sh`:
 ```bash
 #!/bin/bash
-source shakedown.sh
+source shakedown.sh                              # load the framework
 
-shakedown GET /about
-  status 200
-  header 'Content-Type: text/html'
-  contains 'Take back your privacy!'
+shakedown GET /about                             # make a GET request
+  status 200                                     # assert response status is 200
+  header 'Content-Type: text/html'               # assert response header exists
+  contains 'Take back your privacy!'             # assert resposne body contains string
 
-shakedown POST / -d 'q=Shakedown'
-  status 200
+shakedown POST / -d 'q=Shakedown'                # make a POST request with form data
+  status 200                                
   contains 'Bob Seger'
 ```
 
@@ -50,12 +41,19 @@ Shakedown complete. 2 passed, 0 failed.
 ## Assertions
 
 ```
-status 'response status code'
+status   'response status code'
 contains 'string in response body'
-matches 'regex in response body'
-header 'string in response headers'
+matches  'regex in response body'
+header   'string in response headers'
 ```
 
+## DSL
+```
+shakedown <VERB> <PATH> <CURL OPTIONS>
+  <assertion>
+  <assertion>
+  ...
+```
 
 ## HTTP Authentication
 
