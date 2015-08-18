@@ -5,7 +5,7 @@ BASE_URL=${SHAKEDOWN_URL:-""}
 CREDENTIALS=${SHAKEDOWN_CREDENTIALS:-""}
 
 _usage() {
-  printf '
+  echo '
 usage: $0 [options...]
 Options:
   -u <base URL>         Base URL to test.
@@ -45,12 +45,12 @@ CGREEN=$(tput setaf 2)
 CDEFAULT=$(tput sgr0)
 
 _pass() {
-  printf " ${CGREEN}✔ ${1}${CDEFAULT}\n"
+  echo " ${CGREEN}✔ ${1}${CDEFAULT}"
 }
 
 _fail() {
   STATE="fail"
-  printf " ${CRED}✘ ${1}${CDEFAULT}\n"
+  echo " ${CRED}✘ ${1}${CDEFAULT}"
 }
 
 _start_test() {
@@ -85,7 +85,8 @@ shakedown() {
   _start_test
   METHOD="$1"
   URL="$2"
-  printf "\n${METHOD} ${URL}\n"
+  echo
+  echo "${METHOD} ${URL}"
   METHOD_OPT="-X ${METHOD}"
   if [ "${METHOD}" = "HEAD" ]; then
     METHOD_OPT="-I"
