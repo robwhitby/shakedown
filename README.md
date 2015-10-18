@@ -1,8 +1,10 @@
 # shakedown
 
-A tiny Bash DSL for HTTP testing.
+A tiny Bash DSL for HTTP testing with zero dependencies.
 
 Make HTTP requests and assert on the response body and headers.
+
+<sub>* unless you count cURL and grep</sub>
 
 
 ## Example
@@ -101,6 +103,9 @@ shakedown GET / -H 'Accept: application/json'   # add curl options
 
 shakedown PUT /user/1 -d name=Rob               # make a PUT request
   status 201
+
+shakedown GET http://www.google.com -L          # provide full url to override default base url.
+  status 200                                    # -L cURL option to follow redirects
 ```
 
 

@@ -38,7 +38,7 @@ if [ -n "${CREDENTIALS}" ]; then
   AUTH="--anyauth --user ${CREDENTIALS}"
 fi
 
-CURL="curl -sS ${AUTH} -D ${RESPONSE_HEADERS} --connect-timeout 5 --max-time 10"
+CURL="curl -sS ${AUTH} -D ${RESPONSE_HEADERS} --connect-timeout 5 --max-time 30"
 
 CRED=$(tput setaf 1)
 CGREEN=$(tput setaf 2)
@@ -85,15 +85,17 @@ shakedown() {
   _start_test
   METHOD="$1"
   URL="$2"
+  if ! [[ $URL == http* ]]; then
+    URL="${BASE_URL}${URL}"
+  fi
   echo
   echo "${METHOD} ${URL}"
   METHOD_OPT="-X ${METHOD}"
   if [ "${METHOD}" = "HEAD" ]; then
     METHOD_OPT="-I"
   fi
-  ${CURL} ${METHOD_OPT} "${@:3}" "${BASE_URL}${URL}" > ${RESPONSE_BODY}
+  ${CURL} ${METHOD_OPT} -v "${@:3}" "${URL}" > ${RESPONSE_BODY}
 }
-
 
 # assertions
 
