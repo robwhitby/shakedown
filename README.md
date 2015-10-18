@@ -116,9 +116,9 @@ The environment variables `SHAKEDOWN_URL` and `SHAKEDOWN_CREDENTIALS` can be use
 
 
 ## Running tests in parallel
-Todo, but something like this:
+Divide your tests into multiple files, then run those in parallel, for example:
 
 ```bash
 export SHAKEDOWN_URL=https://duckduckgo.com
-ls test*.sh | xargs -n1 -P4 bash
+ls -1 test-*.sh | parallel bash
 ```
