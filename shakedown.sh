@@ -100,7 +100,7 @@ shakedown() {
 # assertions
 
 header() {
-  grep -Fq "${1}" "${RESPONSE_HEADERS}" && _pass "header ${1}" || _fail "header: ${1}"
+  grep -Fq "${1}" "${RESPONSE_HEADERS}" && _pass "header ${1}" || _fail "header ${1}"
 }
 
 status() {
@@ -118,6 +118,14 @@ matches() {
   grep -Eq "${1}" "${RESPONSE_BODY}" && _pass "${MSG}" || _fail "${MSG}"
 }
 
+content_type() {
+  CT_HEADER="$(_get_header 'Content-Type')"
+  echo "${CT_HEADER}" | grep -Fq "${1}" && _pass "Content-Type: ${1}" || _fail "Content-Type: ${1} (actual: ${CT_HEADER})"
+}
+
+_get_header() {
+  grep -F "${1}" "${RESPONSE_HEADERS}" | tr -d '\r'
+}
 
 # debug
 

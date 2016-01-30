@@ -1,6 +1,6 @@
 # shakedown
 
-A tiny Bash DSL for HTTP testing with zero dependencies.
+A tiny Bash DSL for HTTP testing with zero dependencies<sup>*</sup>.
 
 Make HTTP requests and assert on the response body and headers.
 
@@ -15,7 +15,8 @@ source shakedown.sh                             # load the framework
 
 shakedown GET /about                            # make a GET request
   status 200                                    # assert response status is 200
-  header 'Content-Type: text/html'              # assert response header exists
+  content_type 'text/html'                      # assert content type contains string
+  header 'Expires'                              # assert response header exists containing string
   contains 'Take back your privacy!'            # assert resposne body contains string
 
 shakedown POST / -d 'q=Shakedown'               # make a POST request with form data
@@ -30,7 +31,8 @@ Starting shakedown of https://duckduckgo.com
 
 GET /about
  ✔ status 200
- ✔ header Content-Type: text/html
+ ✔ Content-Type: text/html
+ ✔ header Expires
  ✔ contains "Take back your privacy!"
 
 POST /
