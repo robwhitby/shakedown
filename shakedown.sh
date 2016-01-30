@@ -94,7 +94,7 @@ shakedown() {
   if [ "${METHOD}" = "HEAD" ]; then
     METHOD_OPT="-I"
   fi
-  ${CURL} ${METHOD_OPT} -v "${@:3}" "${URL}" > ${RESPONSE_BODY}
+  ${CURL} ${METHOD_OPT} "${@:3}" "${URL}" > ${RESPONSE_BODY}
 }
 
 # assertions
