@@ -54,10 +54,11 @@ shakedown <VERB> <PATH> <CURL OPTIONS>
 
 ## Assertions
 ```
-status   'response status code'
-contains 'string in response body'
-matches  'regex in response body'
-header   'string in response headers'
+status        'response status code'
+contains      'string in response body'
+matches       'regex in response body'
+header        'string in response headers'
+content_type  'string in Content-Type header'
 ```
 
 
@@ -90,7 +91,7 @@ source shakedown.sh                             # load the framework
 
 shakedown GET /foo                              # make a GET request
   status 404                                    # assert on http status code
-  header 'Content-Type: text/html'              # assert on response header
+  content_type 'text/html'                      # assert Content-Type header contains string
   contains 'Not found'                          # assert body contains string
   matches 'No.*'                                # assert body matches regex
 
@@ -101,7 +102,7 @@ shakedown GET / -H 'Accept: application/json'   # add curl options
   print_headers                                 # output response headers for debugging
   print_body                                    # output response body for debugging
   status 200
-  header 'Content-Type: application/json'
+  header 'Expires'
 
 shakedown PUT /user/1 -d name=Rob               # make a PUT request
   status 201
