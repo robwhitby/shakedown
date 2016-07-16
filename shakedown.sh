@@ -104,7 +104,7 @@ header() {
 }
 
 no_header() {
-  grep -Fq "${1}" "${RESPONSE_HEADERS}" || _pass "no_header ${1}" || _fail "no_header ${1}"
+  grep -Fq "${1}" "${RESPONSE_HEADERS}" && _fail "no_header ${1}" || _pass "no_header ${1}"
 }
 
 status() {
