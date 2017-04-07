@@ -1,5 +1,5 @@
 #!/bin/bash
-source shakedown.sh                             # load the framework
+source $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/shakedown.sh      # load the framework
 
 shakedown GET /about                            # make a GET request
   status 200                                    # assert response status is 200
