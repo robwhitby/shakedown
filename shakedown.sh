@@ -40,9 +40,9 @@ fi
 
 CURL="curl -sS ${AUTH} -D ${RESPONSE_HEADERS} --connect-timeout 5 --max-time 30"
 
-CRED=$(tput setaf 1)
-CGREEN=$(tput setaf 2)
-CDEFAULT=$(tput sgr0)
+CRED=$(tput setaf 1 2> /dev/null)
+CGREEN=$(tput setaf 2 2> /dev/null)
+CDEFAULT=$(tput sgr0 2> /dev/null)
 
 _pass() {
   echo " ${CGREEN}✔ ${1}${CDEFAULT}"
