@@ -103,6 +103,10 @@ header() {
   grep -Fq "${1}" "${RESPONSE_HEADERS}" && _pass "header ${1}" || _fail "header ${1}"
 }
 
+no_header() {
+  grep -Fq "${1}" "${RESPONSE_HEADERS}" && _fail "no_header ${1}" || _pass "no_header ${1}"
+}
+
 status() {
   STATUS_CODE=$(grep -Eo "^HTTP.+ [1-5][0-9][0-9] " ${RESPONSE_HEADERS} | grep -Eo '[1-5][0-9][0-9]' | tail -n1)
   [[ "${STATUS_CODE}" = "${1}" ]] && _pass "status ${1}" || _fail "status ${1} (actual: ${STATUS_CODE})"
@@ -136,3 +140,4 @@ print_headers() {
 print_body() {
   cat "${RESPONSE_BODY}"
 }
+

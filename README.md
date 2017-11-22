@@ -58,6 +58,7 @@ status        'response status code'
 contains      'string in response body'
 matches       'regex in response body'
 header        'string in response headers'
+no_header     'no response header containing string'
 content_type  'string in Content-Type header'
 ```
 
