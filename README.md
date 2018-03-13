@@ -54,12 +54,13 @@ shakedown <VERB> <PATH> <CURL OPTIONS>
 
 ## Assertions
 ```
-status        'response status code'
-contains      'string in response body'
-matches       'regex in response body'
-header        'string in response headers'
-no_header     'no response header containing string'
-content_type  'string in Content-Type header'
+status          'response status code'
+contains        'string in response body'
+matches         'regex in response body'
+header          'string in response headers'
+no_header       'no response header containing string'
+content_type    'string in Content-Type header'
+header_contains 'for a given header checks its value'
 ```
 
 
@@ -88,28 +89,31 @@ To help diagnose failing tests use ```print_headers```, ```print_body```, or mak
 ## More Examples
 ```bash
 #!/bin/bash
-source shakedown.sh                             # load the framework
+source shakedown.sh                               # load the framework
 
-shakedown GET /foo                              # make a GET request
-  status 404                                    # assert on http status code
-  content_type 'text/html'                      # assert Content-Type header contains string
-  contains 'Not found'                          # assert body contains string
-  matches 'No.*'                                # assert body matches regex
+shakedown GET /foo                                # make a GET request
+  status 404                                      # assert on http status code
+  content_type 'text/html'                        # assert Content-Type header contains string
+  contains 'Not found'                            # assert body contains string
+  matches 'No.*'                                  # assert body matches regex
 
-shakedown HEAD /                                # make a HEAD request
+shakedown HEAD /                                  # make a HEAD request
   status 302
 
-shakedown GET / -H 'Accept: application/json'   # add curl options
-  print_headers                                 # output response headers for debugging
-  print_body                                    # output response body for debugging
+shakedown GET / -H 'Accept: application/json'     # add curl options
+  print_headers                                   # output response headers for debugging
+  print_body                                      # output response body for debugging
   status 200
   header 'Expires'
 
-shakedown PUT /user/1 -d name=Rob               # make a PUT request
+shakedown PUT /user/1 -d name=Rob                 # make a PUT request
   status 201
 
-shakedown GET http://www.google.com -L          # provide full url to override default base url.
-  status 200                                    # -L cURL option to follow redirects
+shakedown GET http://www.google.com -L            # provide full url to override default base url.
+  status 200                                      # -L cURL option to follow redirects
+  
+shakedown GET http://www.google.com
+  header_contains 'Referrer-Policy' 'no-referrer' # assert header 'Referrer-Policy' contains value 'no-referrer'
 ```
 
 
