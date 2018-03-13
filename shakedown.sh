@@ -137,6 +137,16 @@ _get_header() {
   grep -F "${1}" "${RESPONSE_HEADERS}" | tr -d '\r'
 }
 
+moved() {
+  header_contains Location "$1"
+  status 301
+}
+
+found() {
+  header_contains Location "$1"
+  status 302
+}
+
 # debug
 
 print_headers() {
