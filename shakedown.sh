@@ -127,6 +127,12 @@ content_type() {
   echo "${CT_HEADER}" | grep -Fq "${1}" && _pass "Content-Type: ${1}" || _fail "Content-Type: ${1} (actual: ${CT_HEADER})"
 }
 
+header_contains() {
+	HEADER_NAME=${1}
+  HEADER="$(_get_header $HEADER_NAME)"
+  echo "${HEADER}" | grep -Fq "${2}" && _pass "${HEADER_NAME}: ${2}" || _fail "${HEADER_NAME}: ${2} (actual: ${HEADER})"
+}
+
 _get_header() {
   grep -F "${1}" "${RESPONSE_HEADERS}" | tr -d '\r'
 }
