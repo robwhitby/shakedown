@@ -54,13 +54,13 @@ shakedown <VERB> <PATH> <CURL OPTIONS>
 
 ## Assertions
 ```
-status          'response status code'
-contains        'string in response body'
-matches         'regex in response body'
-header          'string in response headers'
-no_header       'no response header containing string'
-content_type    'string in Content-Type header'
-header_contains 'for a given header checks its value'
+status          <code>           Response status code = <code>
+contains        <string>         Response body contains <string>
+matches         <regex>          Response body matches <regex>
+header          <string>         Response headers contains <string>
+no_header       <string>         Response headers do not contain <string>
+content_type    <string>         Content-Type header contains <string>
+header_contains <name> <string>  Response header <name> contains <string>
 ```
 
 
