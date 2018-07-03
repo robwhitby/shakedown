@@ -134,7 +134,7 @@ header_contains() {
 }
 
 _get_header() {
-  grep -F "${1}" "${RESPONSE_HEADERS}" | tr -d '\r'
+  grep -i -F "${1}" "${RESPONSE_HEADERS}" | tr -d '\r'
 }
 
 # debug
