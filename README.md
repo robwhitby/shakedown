@@ -10,7 +10,7 @@ Make HTTP requests and assert on the response body and headers.
 ## Example
 Create `test.sh`:
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 source shakedown.sh                             # load the framework
 
 shakedown GET /about                            # make a GET request
@@ -26,7 +26,7 @@ shakedown POST / -d 'q=Shakedown'               # make a POST request with form 
 
 Run the tests against a base URL:
 ```
-$ bash test.sh -u https://duckduckgo.com
+$ ./test.sh -u https://duckduckgo.com
 Starting shakedown of https://duckduckgo.com
 
 GET /about
@@ -67,7 +67,7 @@ header_contains <name> <string>  Response header <name> contains <string>
 ## HTTP Authentication
 Use the -c option to provide credentials.
 
-```bash test.sh -u my.domain.com -c user:pass```
+```./test.sh -u my.domain.com -c user:pass```
 
 
 ## Setting cURL options
@@ -88,7 +88,7 @@ To help diagnose failing tests use ```print_headers```, ```print_body```, or mak
 
 ## More Examples
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 source shakedown.sh                               # load the framework
 
 shakedown GET /foo                                # make a GET request
@@ -111,7 +111,7 @@ shakedown PUT /user/1 -d name=Rob                 # make a PUT request
 
 shakedown GET http://www.google.com -L            # provide full url to override default base url.
   status 200                                      # -L cURL option to follow redirects
-  
+
 shakedown GET http://www.google.com
   header_contains 'Referrer-Policy' 'no-referrer' # assert header 'Referrer-Policy' contains value 'no-referrer'
 ```
@@ -120,7 +120,7 @@ shakedown GET http://www.google.com
 ## Environment variables
 The environment variables `SHAKEDOWN_URL` and `SHAKEDOWN_CREDENTIALS` can be used instead of passing -u and -c options.
 
-```SHAKEDOWN_URL=https://duckduckgo.com bash test.sh```
+```SHAKEDOWN_URL=https://duckduckgo.com ./test.sh```
 
 
 ## Running tests in parallel

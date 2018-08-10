@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -u
 
 BASE_URL=${SHAKEDOWN_URL:-""}
@@ -100,11 +100,11 @@ shakedown() {
 # assertions
 
 header() {
-  grep -Fq "${1}" "${RESPONSE_HEADERS}" && _pass "header ${1}" || _fail "header ${1}"
+  grep -iFq "${1}" "${RESPONSE_HEADERS}" && _pass "header ${1}" || _fail "header ${1}"
 }
 
 no_header() {
-  grep -Fq "${1}" "${RESPONSE_HEADERS}" && _fail "no_header ${1}" || _pass "no_header ${1}"
+  grep -iFq "${1}" "${RESPONSE_HEADERS}" && _fail "no_header ${1}" || _pass "no_header ${1}"
 }
 
 status() {
