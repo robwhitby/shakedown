@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -u
 
+# default values can be overriden by setting env vars
 BASE_URL=${SHAKEDOWN_URL:-""}
 CREDENTIALS=${SHAKEDOWN_CREDENTIALS:-""}
+CONNECT_TIMEOUT=${SHAKEDOWN_CONNECT_TIMEOUT:-"5"}
+MAX_TIME=${SHAKEDOWN_MAX_TIME:-"30"}
 
 _usage() {
   echo '
@@ -38,7 +41,7 @@ if [ -n "${CREDENTIALS}" ]; then
   AUTH="--anyauth --user ${CREDENTIALS}"
 fi
 
-CURL="curl -sS ${AUTH} -D ${RESPONSE_HEADERS} --connect-timeout 5 --max-time 30"
+CURL="curl -sS ${AUTH} -D ${RESPONSE_HEADERS} --connect-timeout ${CONNECT_TIMEOUT} --max-time ${MAX_TIME}"
 
 CRED=$(tput setaf 1 2> /dev/null)
 CGREEN=$(tput setaf 2 2> /dev/null)

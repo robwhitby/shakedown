@@ -122,6 +122,11 @@ The environment variables `SHAKEDOWN_URL` and `SHAKEDOWN_CREDENTIALS` can be use
 
 ```SHAKEDOWN_URL=https://duckduckgo.com ./test.sh```
 
+Request timeouts can be set with:
+```
+SHAKEDOWN_CONNECT_TIMEOUT=5  # sets the curl option --connect-timeout. defaults to 5 seconds.
+SHAKEDOWN_MAX_TIME=30        # sets the curl option --max-time. defaults to 30 seconds.
+```
 
 ## Running tests in parallel
 Divide your tests into multiple files, then run those in parallel, for example:
