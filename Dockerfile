@@ -1,5 +1,9 @@
-FROM bash:5
+FROM ubuntu:19.04
 LABEL maintainer="Rob Whitby" url="https://github.com/robwhitby/shakedown"
 
-RUN apk add --no-cache curl
+RUN apt-get update \
+    && apt-get install -y curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+    
 COPY shakedown.sh /usr/local/bin/shakedown.sh
