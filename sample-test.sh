@@ -5,7 +5,7 @@
 # or
 # SHAKEDOWN_URL=https://duckduckgo.com ./sample-test.sh
 
-source $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/shakedown.sh  # load the framework
+source shakedown.sh                         # load the framework
 
 shakedown GET /about                        # make a GET request
   status 200                                # assert response status is 200
