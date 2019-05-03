@@ -135,3 +135,13 @@ Divide your tests into multiple files, then run those in parallel, for example:
 export SHAKEDOWN_URL=https://duckduckgo.com
 ls -1 test-*.sh | parallel bash
 ```
+
+## Docker
+
+[![docker hub](https://img.shields.io/docker/cloud/build/robwhitby/shakedown.svg)](https://hub.docker.com/r/robwhitby/shakedown)
+
+<https://hub.docker.com/r/robwhitby/shakedown>
+
+```
+docker run -v "$PWD":/work robwhitby/shakedown /work/sample-test.sh -u https://duckduckgo.com
+```
