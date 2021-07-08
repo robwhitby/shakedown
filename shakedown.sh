@@ -120,6 +120,11 @@ contains() {
   grep -Fq "${1}" "${RESPONSE_BODY}" && _pass "${MSG}" || _fail "${MSG}"
 }
 
+matches_snapshot() {
+  MSG="matches snapshot \"${1}\""
+  cmp $RESPONSE_BODY $1 && _pass "${MSG}" || _fail "${MSG}"
+}
+
 matches() {
   MSG="matches \"${1}\""
   grep -Eq "${1}" "${RESPONSE_BODY}" && _pass "${MSG}" || _fail "${MSG}"
