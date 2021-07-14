@@ -114,6 +114,9 @@ shakedown GET http://www.google.com -L            # provide full url to override
 
 shakedown GET http://www.google.com
   header_contains 'Referrer-Policy' 'no-referrer' # assert header 'Referrer-Policy' contains value 'no-referrer'
+
+shakedown GET /about
+  contains "$(cat about.html)" | head -n1         # because this is a bash script we can read files etc.
 ```
 
 
