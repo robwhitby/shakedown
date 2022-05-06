@@ -146,5 +146,5 @@ ls -1 test-*.sh | parallel bash
 <https://hub.docker.com/r/robwhitby/shakedown>
 
 ```
-docker run -v "$PWD":/work robwhitby/shakedown /work/sample-test.sh -u https://duckduckgo.com
+docker run -t -v "$PWD":/work robwhitby/shakedown /work/sample-test.sh -u https://duckduckgo.com
 ```
