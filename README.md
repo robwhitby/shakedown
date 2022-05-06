@@ -6,7 +6,6 @@ Make HTTP requests and assert on the response body and headers.
 
 <sub>* unless you count cURL and grep</sub>
 
-
 ## Example
 Create `test.sh`:
 ```bash
@@ -141,7 +140,7 @@ ls -1 test-*.sh | parallel bash
 
 ## Docker
 
-[![docker hub](https://img.shields.io/docker/cloud/build/robwhitby/shakedown.svg)](https://hub.docker.com/r/robwhitby/shakedown)
+[![Push to DockerHub](https://github.com/robwhitby/shakedown/actions/workflows/docker.yml/badge.svg)](https://github.com/robwhitby/shakedown/actions/workflows/docker.yml)
 
 <https://hub.docker.com/r/robwhitby/shakedown>
 
