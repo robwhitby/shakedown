@@ -7,10 +7,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 
-COPY sample-test.sh /usr/local/bin
-
 COPY shakedown.sh /usr/local/bin
 
-# run sample test
+# run the sample test
 COPY sample-test.sh /tmp
 RUN /tmp/sample-test.sh -u https://duckduckgo.com

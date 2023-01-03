@@ -13,9 +13,9 @@ shakedown GET /about                        # make a GET request
   header 'Expires'                          # assert response header exists containing string
   contains 'Privacy, simplified'            # assert response body contains string
 
-shakedown POST / -d 'q=Shakedown'           # make a POST request with form data
+shakedown POST / -L -d "q=Bob%20Seger"      # make a POST request with form data
   status 200
-  contains 'Bob Seger'
+  contains 'Robert Clark Seger'
 
 shakedown GET http://www.google.com -L      # provide full url to override default base url.
   status 200                                # -L cURL option to follow redirects
