@@ -1,0 +1,18 @@
+name: 'Shakedown'
+description: 'Smoke test http applications'
+
+inputs:
+  tests:
+    description: path to test file e.g. sample-test.sh
+    required: true
+  url:
+    description: base url to test e.g. https://duckduckgo.com
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'robwhitby/shakedown'
+  entrypoint: /usr/local/bin/action.sh
+  args:
+  - ${{ inputs.tests }}
+  - ${{ inputs.url }}

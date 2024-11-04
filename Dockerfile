@@ -1,13 +1,14 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest
 LABEL maintainer="Rob Whitby" url="https://github.com/robwhitby/shakedown"
 
 RUN apt-get update \
-    && apt-get install -y curl jq \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+  && apt-get install -y curl jq \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 
 COPY shakedown.sh /usr/local/bin
+COPY action.sh /usr/local/bin/
 
 # run the sample test
 COPY sample-test.sh /tmp

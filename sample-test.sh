@@ -11,7 +11,7 @@ shakedown GET /about                        # make a GET request
   status 200                                # assert response status is 200
   content_type 'text/html'                  # assert content type contains string
   header 'Expires'                          # assert response header exists containing string
-  contains 'Privacy, simplified'            # assert response body contains string
+  contains 'DuckDuckGo'                     # assert response body contains string
 
 shakedown POST / -L -d "q=Bob%20Seger"      # make a POST request with form data
   status 200
