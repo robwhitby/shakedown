@@ -1,4 +1,4 @@
-name: Shakedown
+name: Shakedown Smoke Tester
 author: Rob Whitby
 description: Simple smoke test framework for http applications
 
