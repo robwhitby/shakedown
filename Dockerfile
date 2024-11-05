@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 LABEL maintainer="Rob Whitby" url="https://github.com/robwhitby/shakedown"
 
 RUN apt-get update \
