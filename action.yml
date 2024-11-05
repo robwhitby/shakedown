@@ -1,5 +1,6 @@
-name: 'Shakedown'
-description: 'Smoke test http applications'
+name: Shakedown
+author: Rob Whitby
+description: Simple smoke test framework for http applications
 
 inputs:
   tests:
@@ -16,3 +17,7 @@ runs:
   args:
   - ${{ inputs.tests }}
   - ${{ inputs.url }}
+
+branding:
+  icon: check
+  color: green
