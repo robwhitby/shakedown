@@ -147,3 +147,14 @@ ls -1 test-*.sh | parallel bash
 ```
 docker run -t -v "$PWD":/work robwhitby/shakedown /work/sample-test.sh -u https://duckduckgo.com
 ```
+
+
+## GitHub Action
+
+```yaml
+- name: Shakedown
+  uses: robwhitby/shakedown@v1
+  with:
+    tests: sample-test.sh        # required. path to test file
+    url: https://duckduckgo.com  # required. base url to test
+```
